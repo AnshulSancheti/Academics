@@ -78,17 +78,17 @@ Two jobs in one sentence:
 
 High-level list (each expanded below):
 
-| # | Function            | One-line job                                                    |
-|---|---------------------|-----------------------------------------------------------------|
-| 1 | Memory Management   | Track RAM, allocate/free, keep programs isolated                |
-| 2 | Process Management  | Create, schedule, suspend, and destroy processes                |
-| 3 | CPU Execution       | Share CPU time fairly across processes                          |
-| 4 | Device Management   | Talk to I/O devices through drivers                             |
-| 5 | File Management     | Organize persistent storage into files and directories          |
-| 6 | Security            | Isolate users and programs; prevent unauthorized access         |
-| 7 | System Calls        | Controlled gateway from user code into the kernel               |
-| 8 | Error Detection     | Catch hardware, software, and network faults; help recover      |
-| 9 | Resource Management | Account for usage; maximize utilization of limited resources    |
+| #   | Function            | One-line job                                                 |
+| --- | ------------------- | ------------------------------------------------------------ |
+| 1   | Memory Management   | Track RAM, allocate/free, keep programs isolated             |
+| 2   | Process Management  | Create, schedule, suspend, and destroy processes             |
+| 3   | CPU Execution       | Share CPU time fairly across processes                       |
+| 4   | Device Management   | Talk to I/O devices through drivers                          |
+| 5   | File Management     | Organize persistent storage into files and directories       |
+| 6   | Security            | Isolate users and programs; prevent unauthorized access      |
+| 7   | System Calls        | Controlled gateway from user code into the kernel            |
+| 8   | Error Detection     | Catch hardware, software, and network faults; help recover   |
+| 9   | Resource Management | Account for usage; maximize utilization of limited resources |
 
 ---
 
@@ -475,3 +475,5 @@ Every interesting thing your program does eventually bottoms out in a system cal
 3. How do two processes cooperate safely — what is a **race condition**?
 4. What happens inside the CPU during a **context switch**?
 5. How does the OS recover if a **system call** fails or a process crashes?
+
+> Continues in [[Class 2 (27th April)]] — answers questions 1 and 4 in depth, and lays the groundwork for question 3.
