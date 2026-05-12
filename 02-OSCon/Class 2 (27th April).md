@@ -62,7 +62,6 @@ A useful analogy: a **recipe** in a cookbook is a program; **you actually cookin
 
 To understand *why* scheduling is needed at all, look at what a CPU actually is.
 
-![[Pasted image 20260427152745.png]]
 
 A single **core** is the smallest unit that can independently execute instructions. Every core contains:
 
@@ -194,12 +193,12 @@ stateDiagram-v2
     Terminated --> [*]
 ```
 
-| State | Meaning |
-|---|---|
-| **New** | Being created — PCB allocated, memory being set up. |
-| **Ready** | Has everything it needs *except* the CPU. Sitting in the ready queue. |
-| **Running** | Currently executing on a core. **At most one process per core in this state.** |
-| **Waiting / Blocked** | Cannot make progress until an external event (disk read, mutex, sleep timer). Not in the ready queue. |
+| State                   | Meaning                                                                                               |
+| ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| **New**                 | Being created — PCB allocated, memory being set up.                                                   |
+| **Ready**               | Has everything it needs *except* the CPU. Sitting in the ready queue.                                 |
+| **Running**             | Currently executing on a core. **At most one process per core in this state.**                        |
+| **Waiting / Blocked**   | Cannot make progress until an external event (disk read, mutex, sleep timer). Not in the ready queue. |
 | **Terminated / Zombie** | Finished executing. Resources mostly freed; PCB lingers briefly so the parent can read its exit code. |
 
 ![[Pasted image 20260427155242.png]]
@@ -217,15 +216,15 @@ Everything needed to resume A *exactly where it left off*: the ongoing computati
 
 ### 7.1 What "the context" actually contains
 
-| Saved | Why |
-|---|---|
-| **Program counter (PC)** | The next instruction to execute |
-| **CPU registers** (general-purpose, flags, stack pointer, base pointer) | The in-flight computation |
-| **Process state** | Running / Ready / Waiting |
-| **Memory map** (page table base register) | So the MMU sees the right virtual → physical mapping |
-| **Open file descriptors** | Files / sockets the process has open |
-| **Accounting info** (CPU time used, PID, parent PID, priority) | Bookkeeping |
-| **Scheduling info** (priority, queue pointer) | For the next dispatch decision |
+| Saved                                                                   | Why                                                  |
+| ----------------------------------------------------------------------- | ---------------------------------------------------- |
+| **Program counter (PC)**                                                | The next instruction to execute                      |
+| **CPU registers** (general-purpose, flags, stack pointer, base pointer) | The in-flight computation                            |
+| **Process state**                                                       | Running / Ready / Waiting                            |
+| **Memory map** (page table base register)                               | So the MMU sees the right virtual → physical mapping |
+| **Open file descriptors**                                               | Files / sockets the process has open                 |
+| **Accounting info** (CPU time used, PID, parent PID, priority)          | Bookkeeping                                          |
+| **Scheduling info** (priority, queue pointer)                           | For the next dispatch decision                       |
 
 This whole bundle is the **Process Control Block (PCB)** — one PCB per process.
 
@@ -300,11 +299,11 @@ A single switch is fast (≈ 1–10 µs), but at **thousands per second** the co
 
 ### 8.1 Cooperative vs preemptive multitasking
 
-| | **Cooperative** | **Preemptive** |
-|---|---|---|
-| Who yields the CPU | The process itself (must call `yield()`) | The OS via timer interrupt |
-| Misbehaving process | Hangs the whole system | Gets preempted, system stays alive |
-| Historical examples | Classic Mac OS (≤ 9), Windows 3.x | Linux, modern Windows, macOS, iOS, Android |
+|                     | **Cooperative**                          | **Preemptive**                             |
+| ------------------- | ---------------------------------------- | ------------------------------------------ |
+| Who yields the CPU  | The process itself (must call `yield()`) | The OS via timer interrupt                 |
+| Misbehaving process | Hangs the whole system                   | Gets preempted, system stays alive         |
+| Historical examples | Classic Mac OS (≤ 9), Windows 3.x        | Linux, modern Windows, macOS, iOS, Android |
 
 Cooperative multitasking is mostly extinct on general-purpose OSes — one bug in one app would freeze your whole machine. It still appears in **userspace coroutines** (Python `asyncio`, Go goroutines yielding at I/O points, JavaScript event loop), where the runtime — not the OS — does the scheduling.
 
@@ -350,13 +349,13 @@ if (pid == 0) {
 
 #### Useful related calls
 
-| Call | Effect |
-|---|---|
-| `fork()` | Create a child clone of the current process |
-| `exec()` family | Replace the current process's program with a new one |
-| `wait()` / `waitpid()` | Parent blocks until child finishes; reads exit code |
-| `exit()` | Terminate the calling process |
-| `kill(pid, sig)` | Send a signal (SIGTERM, SIGKILL, …) |
+| Call                   | Effect                                               |
+| ---------------------- | ---------------------------------------------------- |
+| `fork()`               | Create a child clone of the current process          |
+| `exec()` family        | Replace the current process's program with a new one |
+| `wait()` / `waitpid()` | Parent blocks until child finishes; reads exit code  |
+| `exit()`               | Terminate the calling process                        |
+| `kill(pid, sig)`       | Send a signal (SIGTERM, SIGKILL, …)                  |
 
 #### Edge cases — zombies and orphans
 
@@ -369,13 +368,13 @@ if (pid == 0) {
 
 ## 9. Quick Recap (flashcard-style)
 
-- [ ] A **program** is static (on disk); a **process** is the program *in execution* with memory + CPU + state.
-- [ ] A **core** = ALU + registers + control unit + cache. More cores = more *parallelism*.
-- [ ] The **scheduler** picks who runs next from the **ready queue**; the **dispatcher** actually swaps them in.
-- [ ] **Preemptive** schedulers can take the CPU back via a **timer interrupt**; non-preemptive cannot.
-- [ ] A **time quantum** is the slice of CPU each process gets in Round Robin / preemptive scheduling.
-- [ ] Process states: **New → Ready → Running ↔ Waiting → Terminated** (don't forget Waiting).
-- [ ] A **context switch** saves the running process's registers + PC + memory map into its **PCB** and loads the next process's PCB.
+- [x] A **program** is static (on disk); a **process** is the program *in execution* with memory + CPU + state.
+- [x] A **core** = ALU + registers + control unit + cache. More cores = more *parallelism*.
+- [x] The **scheduler** picks who runs next from the **ready queue**; the **dispatcher** actually swaps them in.
+- [x] **Preemptive** schedulers can take the CPU back via a **timer interrupt**; non-preemptive cannot.
+- [x] A **time quantum** is the slice of CPU each process gets in Round Robin / preemptive scheduling.
+- [x] Process states: **New → Ready → Running ↔ Waiting → Terminated** (don't forget Waiting).
+- [x] A **context switch** saves the running process's registers + PC + memory map into its **PCB** and loads the next process's PCB.
 - [ ] The **PCB** lives in **kernel memory**, not in registers.
 - [ ] Context-switch overhead = register copy + cache pollution + TLB flush + pipeline flush.
 - [ ] **`fork()`** returns 0 in the child and the child's PID in the parent — that's the only way each process knows who it is.

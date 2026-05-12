@@ -477,3 +477,4 @@ Every interesting thing your program does eventually bottoms out in a system cal
 5. How does the OS recover if a **system call** fails or a process crashes?
 
 > Continues in [[Class 2 (27th April)]] — answers questions 1 and 4 in depth, and lays the groundwork for question 3.
+![[Pasted image 20260430162408.png]]

@@ -173,12 +173,12 @@ SQL databases are called **relational** because data is organised into **related
               │ (not any single student)
 ```
 
-| Term | Meaning |
-|---|---|
-| **Entity** | A *thing* that exists and whose data we want to store. The **table** represents the entity (e.g., `Student`, `Course`, `Book`). |
-| **Attribute / Column** | A property of the entity. Each column is **homogeneous** — every value in it is of the same **data type** (e.g., `INT`, `VARCHAR`, `DATE`). |
-| **Record / Row / Tuple** | One instance of the entity — one specific student, one specific book. |
-| **Field** | The single cell where a row meets a column. |
+| Term                     | Meaning                                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Entity**               | A *thing* that exists and whose data we want to store. The **table** represents the entity (e.g., `Student`, `Course`, `Book`).             |
+| **Attribute / Column**   | A property of the entity. Each column is **homogeneous** — every value in it is of the same **data type** (e.g., `INT`, `VARCHAR`, `DATE`). |
+| **Record / Row / Tuple** | One instance of the entity — one specific student, one specific book.                                                                       |
+| **Field**                | The single cell where a row meets a column.                                                                                                 |
 
 > **Important:** The *table as a whole* models the entity — a single row is just one record of that entity, not the entity itself.
 
