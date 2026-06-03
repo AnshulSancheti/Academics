@@ -14,7 +14,7 @@ topics: [process-management, cpu-architecture, cpu-scheduling, preemption, time-
 
 ## 1. Recap & Motivating Questions
 
-In [[Class 1 (24th April)]] we listed **Process Management** and **CPU Execution** as two of the nine OS functions, and ended on three open questions:
+In [[03-Academics/02-OSCon/Class 1 (24th April)]] we listed **Process Management** and **CPU Execution** as two of the nine OS functions, and ended on three open questions:
 
 - *How exactly does the scheduler decide who runs next?*
 - *What happens inside the CPU during a context switch?*
@@ -52,7 +52,7 @@ flowchart LR
 
 A useful analogy: a **recipe** in a cookbook is a program; **you actually cooking it in your kitchen** is a process. Two friends cooking the same recipe in two kitchens are two processes from the same program.
 
-> See also: [[Class 1 (24th April)#3.2 Process Management]] — first introduction to PCB and the ready queue.
+> See also: [[03-Academics/02-OSCon/Class 1 (24th April)#3.2 Process Management]] — first introduction to PCB and the ready queue.
 
 ![[Pasted image 20260427152524.png]]
 
@@ -85,7 +85,7 @@ A single **core** is the smallest unit that can independently execute instructio
 - **Hyper-Threading / SMT** (Simultaneous Multi-Threading) = each physical core pretends to be 2 logical cores by duplicating the register file but sharing the ALU. Linux/Windows see "8 CPUs" on a 4-core SMT chip — but only 4 things truly run in parallel; the rest is fast switching.
 - **Single-core** = no parallelism at all; everything is **concurrent** (the OS interleaves).
 
-> Concurrency vs parallelism — see [[Class 1 (24th April)#3.3 CPU Execution & Scheduling]].
+> Concurrency vs parallelism — see [[03-Academics/02-OSCon/Class 1 (24th April)#3.3 CPU Execution & Scheduling]].
 
 > [!info] Why this matters for scheduling
 > Even a 16-core CPU is finite. A laptop typically has hundreds of processes (`ps -e | wc -l` to check). The OS must share the cores fairly — that is the **scheduler's** job.
@@ -255,7 +255,7 @@ Analogy from class: solving a list of DSA problems. You hit a hard one, **flag i
        └─────────────────────────────┘
 ```
 
-User processes **cannot** read or write the process table directly — that's the kernel-mode protection from [[Class 1 (24th April)#3.6 Security & Protection]]. Every context switch requires a **mode switch** into kernel mode via an interrupt.
+User processes **cannot** read or write the process table directly — that's the kernel-mode protection from [[03-Academics/02-OSCon/Class 1 (24th April)#3.6 Security & Protection]]. Every context switch requires a **mode switch** into kernel mode via an interrupt.
 
 ### 7.3 Step-by-step of one context switch
 
@@ -390,4 +390,4 @@ if (pid == 0) {
 4. When two processes / threads share memory, what can go wrong? (→ race conditions, the start of the concurrency unit.)
 5. How does an `exec()` actually replace a running program in place — what survives, what is wiped?
 
-> Continues from [[Class 1 (24th April)#10. Open Questions to Carry into Class 2|Class 1's open questions]]; questions 1, 3, 4 from there are now partially answered above.
+> Continues from [[03-Academics/02-OSCon/Class 1 (24th April)#10. Open Questions to Carry into Class 2|Class 1's open questions]]; questions 1, 3, 4 from there are now partially answered above.
