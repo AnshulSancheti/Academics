@@ -73,4 +73,37 @@ Q18. Update payment_status to 'Pending' for students who are enrolled in Databas
     -> students s on er.student_id = s.student_id
     -> join
     -> courses c on er.course_id = c.course_id;
-13) 
+13) select s.student_name, c.course_name, a.classes_attended, a.total_classes, er.marks
+    -> from attendance a
+    -> join students s on a.student_id = s.student_id
+    -> join courses c on a.course_id = c.course_id
+    -> join exam_results er on a.student_id = er.student_id
+    -> and a.course_id = er.course_id;
+14) select s.student_name, c.course_name
+    -> from enrollments e
+    -> join students s on e.student_id = s.student_id
+    -> join courses c on e.course_id = c.course_id
+    -> join instructors i on c.instructor_id = i.instructor_id
+    -> where i.instructor_name like '%sharma%';
+15) select s.student_name, c.course_name
+    -> from enrollments e
+    -> join students s on e.student_id = s.student_id
+    -> join courses c on e.course_id = c.course_id
+    -> left join payments p on e.student_id = p.student_id
+    -> and e.course_id = p.course_id
+    -> where p.student_id is null;
+16) select s.student_name, c.course_name, a.classes_attended, a.total_classes
+    -> from attendance a
+    -> join students s on a.student_id = s.student_id
+    -> join courses c on a.course_id = c.course_id
+    -> where ((a.classes_attended / a.total_classes) * 100) < 60;
+17) update exam_results
+    -> set result_status = 'Fail'
+    -> where marks < 40;
+18) update payments p
+    -> join exam_results er on p.student_id = er.student_id
+    -> and p.course_id = er.course_id
+    -> join courses c on er.course_id = c.course_id
+    -> set p.payment_status = 'Pending'
+    -> where er.result_status = 'Fail'
+    -> and c.course_name = 'Database Management Systems';

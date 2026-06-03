@@ -25,13 +25,13 @@ flowchart LR
 
 Example entity: **Student**
 
-| Attribute | Meaning | SQL type | Rule |
-|---|---|---|---|
-| `roll_no` | unique student roll number | `INT` | `PRIMARY KEY` |
-| `name` | student name | `VARCHAR(50)` | `NOT NULL` |
-| `branch` | department / branch | `VARCHAR(10)` | `NOT NULL` |
-| `cgpa` | current CGPA | `DECIMAL(4,2)` | default allowed |
-| `batch` | batch section | `ENUM('A', 'B', 'C')` | restricted values |
+| Attribute | Meaning                    | SQL type              | Rule              |
+| --------- | -------------------------- | --------------------- | ----------------- |
+| `roll_no` | unique student roll number | `INT`                 | `PRIMARY KEY`     |
+| `name`    | student name               | `VARCHAR(50)`         | `NOT NULL`        |
+| `branch`  | department / branch        | `VARCHAR(10)`         | `NOT NULL`        |
+| `cgpa`    | current CGPA               | `DECIMAL(4,2)`        | default allowed   |
+| `batch`   | batch section              | `ENUM('A', 'B', 'C')` | restricted values |
 
 > **Key idea:** SQL is just the formal way of writing this blueprint so that the DBMS can enforce it.
 
@@ -204,8 +204,7 @@ After inserting, the table looks like this:
 ---
 
 ## 6. Reading Data — `SELECT`
-
-`SELECT` is used to fetch data from a table.
+ data from a table.
 
 ```mermaid
 flowchart LR
@@ -219,6 +218,7 @@ flowchart LR
 
 ```sql
 SELECT *
+`SELECT` is used to fetch
 FROM students;
 ```
 
@@ -233,13 +233,13 @@ FROM students;
 
 Result:
 
-| name | branch | cgpa |
-|---|---|---:|
-| Aarav | CSE | 8.90 |
-| Priya | ECE | 0.00 |
-| Rohan | ME | 7.50 |
-| Sneha | CSE | 9.50 |
-| Kabir | CSE | 8.20 |
+| name  | branch | cgpa |
+| ----- | ------ | ---: |
+| Aarav | CSE    | 8.90 |
+| Priya | ECE    | 0.00 |
+| Rohan | ME     | 7.50 |
+| Sneha | CSE    | 9.50 |
+| Kabir | CSE    | 8.20 |
 
 > **Good habit:** Select only the columns you need. `SELECT *` is fine while learning, but production queries should usually be specific.
 
@@ -341,12 +341,12 @@ WHERE branch = 'CSE' OR branch = 'ECE'
 
 `LIKE` is used for pattern matching in strings.
 
-| Pattern | Meaning |
-|---|---|
-| `'A%'` | starts with `A` |
-| `'%a'` | ends with `a` |
-| `'%ar%'` | contains `ar` |
-| `'_a%'` | second letter is `a` |
+| Pattern  | Meaning              |
+| -------- | -------------------- |
+| `'A%'`   | starts with `A`      |
+| `'%a'`   | ends with `a`        |
+| `'%ar%'` | contains `ar`        |
+| `'_a%'`  | second letter is `a` |
 
 ```sql
 SELECT roll_no, name

@@ -231,7 +231,7 @@ This whole bundle is the **Process Control Block (PCB)** — one PCB per process
 ![[Pasted image 20260427160021.png]]
 
 Analogy from class: solving a list of DSA problems. You hit a hard one, **flag it** with everything you'd tried so far ("here's my partial solution, the variables I'd named, where I was stuck") and move on. The flag *is* the context. When you come back, you don't restart from the problem statement — you restart from the flag.
-
+![[Pasted image 20260427160600.png]]
 ![[Pasted image 20260427160600.png]]
 
 ### 7.2 Where does the PCB live?
@@ -368,13 +368,13 @@ if (pid == 0) {
 
 ## 9. Quick Recap (flashcard-style)
 
-- [x] A **program** is static (on disk); a **process** is the program *in execution* with memory + CPU + state.
-- [x] A **core** = ALU + registers + control unit + cache. More cores = more *parallelism*.
-- [x] The **scheduler** picks who runs next from the **ready queue**; the **dispatcher** actually swaps them in.
-- [x] **Preemptive** schedulers can take the CPU back via a **timer interrupt**; non-preemptive cannot.
-- [x] A **time quantum** is the slice of CPU each process gets in Round Robin / preemptive scheduling.
-- [x] Process states: **New → Ready → Running ↔ Waiting → Terminated** (don't forget Waiting).
-- [x] A **context switch** saves the running process's registers + PC + memory map into its **PCB** and loads the next process's PCB.
+- [ ] A **program** is static (on disk); a **process** is the program *in execution* with memory + CPU + state.
+- [ ] A **core** = ALU + registers + control unit + cache. More cores = more *parallelism*.
+- [ ] The **scheduler** picks who runs next from the **ready queue**; the **dispatcher** actually swaps them in.
+- [ ] **Preemptive** schedulers can take the CPU back via a **timer interrupt**; non-preemptive cannot.
+- [ ] A **time quantum** is the slice of CPU each process gets in Round Robin / preemptive scheduling.
+- [ ] Process states: **New → Ready → Running ↔ Waiting → Terminated** (don't forget Waiting).
+- [ ] A **context switch** saves the running process's registers + PC + memory map into its **PCB** and loads the next process's PCB.
 - [ ] The **PCB** lives in **kernel memory**, not in registers.
 - [ ] Context-switch overhead = register copy + cache pollution + TLB flush + pipeline flush.
 - [ ] **`fork()`** returns 0 in the child and the child's PID in the parent — that's the only way each process knows who it is.

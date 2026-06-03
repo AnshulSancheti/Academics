@@ -120,12 +120,12 @@ WHERE roll_no = 102;
 
 ## 4. Why Updates Are Risky
 
-| Risk | What can go wrong |
-|---|---|
-| **Unintended bulk update** | Missing or weak `WHERE` changes thousands of rows. |
-| **Data corruption** | Wrong value gets written into correct rows. |
-| **Loss of historical information** | Old value is overwritten unless backups/audit tables exist. |
-| **Wrong condition** | `branch = 'CSE'` might update all CSE students instead of one student. |
+| Risk                               | What can go wrong                                                      |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| **Unintended bulk update**         | Missing or weak `WHERE` changes thousands of rows.                     |
+| **Data corruption**                | Wrong value gets written into correct rows.                            |
+| **Loss of historical information** | Old value is overwritten unless backups/audit tables exist.            |
+| **Wrong condition**                | `branch = 'CSE'` might update all CSE students instead of one student. |
 
 ### Good Conditions vs Bad Conditions
 
@@ -171,12 +171,12 @@ Imagine this table:
 
 This looks convenient, but it causes problems.
 
-| Problem | Example |
-|---|---|
-| **Update anomaly** | If `Dr. Mehra` changes name/title, we must update many rows. |
+| Problem            | Example                                                                        |
+| ------------------ | ------------------------------------------------------------------------------ |
+| **Update anomaly** | If `Dr. Mehra` changes name/title, we must update many rows.                   |
 | **Delete anomaly** | If the last DBMS enrollment is deleted, we may lose the fact that DBMS exists. |
-| **Insert anomaly** | Cannot add a new course until at least one student enrolls. |
-| **Wasted space** | Course and instructor details repeat again and again. |
+| **Insert anomaly** | Cannot add a new course until at least one student enrolls.                    |
+| **Wasted space**   | Course and instructor details repeat again and again.                          |
 
 > **Conclusion:** Split data into related tables, then use joins to read it back together.
 
@@ -268,14 +268,14 @@ flowchart LR
 Example:
 
 | course_id | course_name | instructor_id |
-|---:|---|---:|
-| 201 | DBMS | 1 |
+| --------: | ----------- | ------------: |
+|       201 | DBMS        |             1 |
 
 The `1` in `courses.instructor_id` points to:
 
 | instructor_id | instructor_name |
-|---:|---|
-| 1 | Dr. Mehra |
+| ------------: | --------------- |
+|             1 | Dr. Mehra       |
 
 So DBMS is taught by Dr. Mehra.
 
@@ -510,10 +510,24 @@ ON c.instructor_id = i.instructor_id;
 ```
 
 ---
-
+ attendance                 |
+| courses                    |
+| departments                |
+| enrollments                |
+| exam_results               |
+| instructors                |
+| payments                   |
+| students attendance                 |
+| courses                    |
+| departments                |
+| enrollments                |
+| exam_results               |
+| instructors                |
+| payments                   |
+| students
 ## 16. Joining More Than Two Tables
 
-Goal: show each student's course, instructor, and grade.
+Goal: in class
 
 ```sql
 SELECT
@@ -570,9 +584,9 @@ One row in table A matches exactly one row in table B.
 
 Example:
 
-| students | student_profiles |
-|---|---|
-| one student | one profile |
+| students    | student_profiles |
+| ----------- | ---------------- |
+| one student | one profile      |
 
 ```mermaid
 erDiagram
@@ -627,13 +641,13 @@ This table is called `enrollments`.
 
 ## 18. Common Join Mistakes
 
-| Mistake | What happens |
-|---|---|
-| Forgetting `ON` | You may accidentally create a Cartesian product. |
-| Joining wrong columns | Rows combine incorrectly. |
-| Using `INNER JOIN` when you need unmatched rows | Missing data disappears from the result. |
-| Not qualifying column names | SQL may not know whether `id` means `students.id` or `courses.id`. |
-| Putting right-table conditions in `WHERE` after a `LEFT JOIN` | Can accidentally turn it into an inner join. |
+| Mistake                                                       | What happens                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Forgetting `ON`                                               | You may accidentally create a Cartesian product.                   |
+| Joining wrong columns                                         | Rows combine incorrectly.                                          |
+| Using `INNER JOIN` when you need unmatched rows               | Missing data disappears from the result.                           |
+| Not qualifying column names                                   | SQL may not know whether `id` means `students.id` or `courses.id`. |
+| Putting right-table conditions in `WHERE` after a `LEFT JOIN` | Can accidentally turn it into an inner join.                       |
 
 Example of ambiguous column names:
 

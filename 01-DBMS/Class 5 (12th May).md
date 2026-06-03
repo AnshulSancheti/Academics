@@ -197,10 +197,10 @@ GROUP BY department;
 
 Why it is correct:
 
-| Selected expression | Allowed because |
-|---|---|
-| `department` | It is in `GROUP BY department` |
-| `AVG(salary)` | It is an aggregate function |
+| Selected expression | Allowed because                |
+| ------------------- | ------------------------------ |
+| `department`        | It is in `GROUP BY department` |
+| `AVG(salary)`       | It is an aggregate function    |
 
 Incorrect:
 
@@ -232,14 +232,14 @@ GROUP BY city, department;
 
 This creates groups like:
 
-| city | department | COUNT(*) |
-|---|---|---:|
-| Delhi | Engineering | 3 |
-| Delhi | Sales | 1 |
-| Mumbai | Sales | 1 |
-| Mumbai | HR | 1 |
-| Pune | HR | 1 |
-| Bengaluru | Engineering | 1 |
+| city      | department  | COUNT(*) |
+| --------- | ----------- | -------: |
+| Delhi     | Engineering |        3 |
+| Delhi     | Sales       |        1 |
+| Mumbai    | Sales       |        1 |
+| Mumbai    | HR          |        1 |
+| Pune      | HR          |        1 |
+| Bengaluru | Engineering |        1 |
 
 ```mermaid
 flowchart LR
